@@ -14,6 +14,7 @@ module.exports.views = function (app, conf) {
     }
 
     //初始化map.json API
+    // conf.confDir下保存了所有项目用fis产出的resouceMap
     app.fis = new mapjson.ResourceApi(conf.confDir);
 
     middleware.push(function (req, res, next) {
