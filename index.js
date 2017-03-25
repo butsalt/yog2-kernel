@@ -22,10 +22,16 @@ Yog.prototype.bootstrap = function (options, cb) {
 
     function loadPlugins(cb) {
         //加载默认插件
+        // 获取默认的factory
         var pluginFactory = loader.loadPlugins(__dirname + '/plugins');
         //加载用户自定义插件
+        // 获取自定义的factory
         _.extend(pluginFactory, loader.loadPlugins(pluginsPath));
         //注入插件加载代码
+        // 调用factory的函数时必须传入app，conf
+        // 通过loader.injectPluginFactory在factory外包一层
+        // 调用这个wrapper时会执行factory并传入这两个必要参数
+        // 这里相当于做了一次currying
         pluginFactory = _.mapValues(pluginFactory, loader.injectPluginFactory);
         //执行插件初始化
         async.auto(pluginFactory, cb);
