@@ -57,6 +57,9 @@ Yog.prototype.bootstrap = function (options, cb) {
     this.DEBUG = (process.env.YOG_DEBUG === 'true') || false;
 
     //加载配置
+    // YOG_ENV可以为'prod'，'dev'或undefined
+    // 用来决定yog当前的运行环境
+    // 比如在'dev'下，a.dev.js的加载优先级高于a.js
     this.conf = loader.loadFolder(confPath, '.' + process.env.YOG_ENV || '');
     //加载插件
     loadPlugins(function (err) {
