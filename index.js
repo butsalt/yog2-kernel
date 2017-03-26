@@ -39,6 +39,7 @@ Yog.prototype.bootstrap = function (options, cb) {
 
     options = options || {};
     //设置yog根目录，默认使用启动文件的目录
+    // 默认是yog project的目录位置
     rootPath = options.rootPath || path.dirname(require.main.filename);
     //设置plugins目录
     pluginsPath = options.pluginsPath || (rootPath + '/plugins');

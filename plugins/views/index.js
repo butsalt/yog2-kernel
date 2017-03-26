@@ -30,6 +30,7 @@ module.exports.views = function (app, conf) {
         //设置view engine
         var viewEngine = new yogView(app, engine, conf[name] || {});
         viewEngines.push(viewEngine);
+        // 当后缀名为name时，用名为engine的引擎来渲染
         app.engine(name, viewEngine.renderFile.bind(viewEngine));
     });
 
